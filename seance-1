@@ -1,79 +1,115 @@
-# A.3 - Les types de base
+Partie A — Premiers pas en Python
+A.1 / A.2 — Questions
 
-entier = 10
-decimal = 3.14
-chaine = "Bonjour"
-booleen = True
-liste = [1, 2, 3]
-dictionnaire = {"nom": "Alice", "age": 20}
+1. C'est quoi Python ? À quoi sert ce langage ? Est-il compilé ou interprété ?
 
-print(type(entier))
-print(type(decimal))
-print(type(chaine))
-print(type(booleen))
-print(type(liste))
-print(type(dictionnaire))
+Python est un langage de programmation généraliste et de haut niveau, créé par Guido van Rossum et publié en 1991. Il est réputé pour la lisibilité de sa syntaxe (indentation significative, peu de symboles). Il sert à de très nombreux domaines : développement web (Django, Flask), science des données et intelligence artificielle (pandas, NumPy, scikit-learn), automatisation de tâches et scripts, outils en ligne de commande, etc.
 
+Python est considéré comme un langage interprété : on n'a pas besoin de le compiler manuellement en un exécutable avant de le lancer, un interpréteur (généralement CPython) lit et exécute le code. En réalité le fonctionnement est hybride : Python compile d'abord le code source en un « bytecode » intermédiaire (fichiers .pyc), qui est ensuite exécuté par la machine virtuelle Python. Du point de vue de l'utilisateur, on parle malgré tout de langage interprété car il n'y a pas d'étape de compilation explicite.
 
-# A.4 - Les opérations
+2. Comment installe-t-on Python ? Comment vérifie-t-on l'installation et la version ?
 
-# Arithmétique
-a = 10
-b = 3
+On installe Python en téléchargeant l'installeur officiel sur python.org, ou via un gestionnaire de paquets (apt sur Linux, brew sur macOS, le Microsoft Store sur Windows). Sur Windows, il faut penser à cocher « Add Python to PATH » pendant l'installation.
 
-print("Addition :", a + b)
-print("Soustraction :", a - b)
-print("Multiplication :", a * b)
-print("Division :", a / b)
-print("Modulo :", a % b)
-print("Puissance :", a ** b)
+On vérifie que l'installation a réussi en ouvrant un terminal et en tapant :
 
-# Chaînes de caractères
-texte = "bonjour le monde"
+bash
+python --version      # ou python3 --version
 
-print("Concaténation :", texte + " !")
-print("Majuscules :", texte.upper())
-print("Minuscules :", texte.lower())
-print("Découpage :", texte.split())
-print("Remplacement :", texte.replace("monde", "Python"))
+La commande affiche le numéro de version (par exemple Python 3.12.4), ce qui confirme à la fois que Python est présent et quelle version est utilisée.
 
-# Listes
-nombres = [1, 2, 3]
+3. Différentes façons de lancer du code Python (avec un cas d'usage) :
 
-nombres.append(4)
-print("Liste après ajout :", nombres)
-print("Longueur :", len(nombres))
-print("Élément à l'indice 0 :", nombres[0])
+Interpréteur interactif (REPL) : on tape python dans le terminal et on écrit des instructions ligne par ligne. Cas d'usage : tester rapidement une expression sans créer de fichier.
+Exécution d'un fichier .py : python mon_script.py. Cas d'usage : lancer un vrai programme complet et réutilisable.
+Notebook Jupyter : cellules exécutables dans le navigateur. Cas d'usage : analyse de données, où l'on mélange code, résultats et graphiques.
+IDE (VS Code, PyCharm) : bouton « Exécuter ». Cas d'usage : développer un projet structuré avec débogage et complétion.
+A.3 — Question
 
-# Dictionnaires
-personne = {"nom": "Alice", "age": 20}
+1. Types de base, typage dynamique, et "3" + 4 ?
 
-print("Valeur de nom :", personne["nom"])
-personne["ville"] = "Paris"
-print("Dictionnaire après ajout :", personne)
+Les types de base en Python sont : int (entiers), float (nombres décimaux), str (chaînes de caractères), bool (booléens True/False), ainsi que les principales structures de données list, dict, tuple et set.
 
-# Comparaisons
-print("a == b :", a == b)
-print("a != b :", a != b)
-print("a < b :", a < b)
-print("a > b :", a > b)
-print("a <= b :", a <= b)
-print("a >= b :", a >= b)
+Le typage dynamique signifie qu'on ne déclare pas le type d'une variable à l'avance : Python le détermine automatiquement à l'exécution, selon la valeur affectée. Une même variable peut changer de type au cours du programme (x = 5 puis x = "texte"). Cela s'oppose au typage statique (Java, C) où le type est fixé à la déclaration.
 
-# Opérateurs booléens
-x = True
-y = False
+"3" + 4 provoque une TypeError. "3" est une chaîne et 4 un entier. L'opérateur + sert à la fois à concaténer des chaînes et à additionner des nombres : Python ne devine pas l'intention et refuse de convertir automatiquement. Le message est du type can only concatenate str (not "int") to str. Pour que cela fonctionne, il faut convertir explicitement : "3" + str(4) donne "34" (concaténation), tandis que int("3") + 4 donne 7 (addition).
 
-print("x and y :", x and y)
-print("x or y :", x or y)
-print("not x :", not x)
+A.4 — Question
 
-# A.5 - Les conditions
+1. Différence entre un opérateur booléen et un opérateur logique ?
 
-taux = float(input("Entrez un taux : "))
-if taux > 1:
-    print("au-dessus de 1")
-elif taux == 1:
-    print("égal à 1")
-else:
-        print("en-dessous de 1")
+En pratique, en Python, les deux termes se recoupent largement. La distinction usuelle est la suivante :
+
+Les opérateurs booléens (ou logiques) and, or, not travaillent sur des valeurs de vérité (True/False) et servent à combiner des conditions. Ils sont « paresseux » (court-circuit) : and s'arrête dès qu'un opérande est faux, or dès qu'un opérande est vrai.
+Les opérateurs logiques bit à bit &, |, ~, ^ agissent sur la représentation binaire des entiers (chaque bit est traité séparément), par exemple 5 & 3 vaut 1.
+
+Autrement dit : and/or/not raisonnent au niveau d'une condition globale (vrai ou faux), tandis que &/|/^ raisonnent bit par bit sur des nombres.
+
+A.6 — Question
+
+1. Quand utilise-t-on une boucle for et quand une boucle while ?
+
+On utilise une boucle for quand on connaît l'ensemble des éléments à parcourir : parcourir une liste, un dictionnaire, une chaîne, ou une plage de valeurs avec range(). Le nombre d'itérations est connu ou borné par la collection.
+On utilise une boucle while quand on répète tant qu'une condition reste vraie, sans savoir à l'avance combien de fois : attendre une saisie valide de l'utilisateur, boucler jusqu'à convergence, etc. Le nombre d'itérations dépend de la condition, pas d'une collection.
+Partie B — Git et GitHub
+
+1. C'est quoi Git ? C'est quoi GitHub ? Quelle différence ?
+
+Git est un logiciel de gestion de versions (VCS) qui s'exécute en local sur ta machine. Il enregistre l'historique des modifications du code sous forme de « commits », permet de créer des branches, de fusionner, et de revenir à un état antérieur.
+GitHub est une plateforme en ligne qui héberge des dépôts Git à distance. Elle ajoute des fonctionnalités de collaboration : dépôts partagés, pull requests, issues, revue de code, gestion des droits, etc.
+
+La différence : Git est l'outil (le moteur de versionnage, local) ; GitHub est un service d'hébergement de dépôts Git dans le cloud. On peut utiliser Git sans GitHub, et il existe des alternatives à GitHub (GitLab, Bitbucket).
+
+2. Pourquoi utiliser Git et GitHub ?
+
+Suivre l'historique : chaque commit est daté et décrit ; on sait qui a changé quoi et pourquoi.
+Revenir en arrière : si une modification casse le projet, on peut revenir à un commit précédent qui fonctionnait.
+Travailler à plusieurs : les branches permettent à chacun de travailler en parallèle sans écraser le travail des autres ; les pull requests et la fusion organisent l'intégration des contributions.
+Sauvegarde à distance : le dépôt distant (GitHub) sert de copie de sécurité et de point de partage central.
+Partie C — Données et API
+C.1 — Questions
+
+1. Affecter une clé qui existe déjà ; un dictionnaire peut-il contenir deux fois la même clé ?
+
+Quand on affecte une valeur à une clé qui existe déjà, l'ancienne valeur est remplacée (écrasée) par la nouvelle. Un dictionnaire ne peut pas contenir deux fois la même clé : les clés sont uniques. Écrire deux fois la même clé ne crée pas de doublon, cela ne fait que mettre à jour la valeur associée.
+
+2. Après .copy() et modification de la copie, l'original est-il modifié ? Et pour une partie imbriquée ?
+
+Si on modifie une valeur de premier niveau de la copie, l'original n'est pas modifié : .copy() crée bien un nouveau dictionnaire.
+En revanche, si on modifie une partie imbriquée (comme rates), l'original est modifié aussi. En effet, .copy() réalise une copie superficielle : le nouveau dictionnaire contient les mêmes références vers les sous-objets. Le sous-dictionnaire rates est donc partagé entre l'original et la copie.
+
+3. C'est quoi la mutabilité ? Copie superficielle vs profonde ? Comment faire une copie profonde ?
+
+La mutabilité désigne la capacité d'un objet à être modifié après sa création. Un objet mutable peut changer sur place (une liste, un dictionnaire) ; un objet immuable ne peut pas être modifié (un entier, une chaîne, un tuple).
+Une copie superficielle (.copy(), copy.copy()) duplique le conteneur de premier niveau mais partage les objets imbriqués (mêmes références).
+Une copie profonde (copy.deepcopy()) duplique récursivement tout, y compris les objets imbriqués : la copie est totalement indépendante de l'original.
+On fait une copie profonde avec le module standard copy :
+python
+  import copy
+  copie = copy.deepcopy(original)
+
+4. Quels types sont mutables ? Lesquels sont immuables ?
+
+Mutables : list, dict, set (et les objets modifiables en général). Exemple : ma_liste.append(4) modifie la liste sur place.
+Immuables : int, float, bool, str, tuple, frozenset. Exemple : on ne peut pas modifier un caractère d'une chaîne ; toute « modification » crée en réalité un nouvel objet.
+C.2 — Questions
+
+1. Qu'est-ce qu'une API ? Que signifie « envoyer une requête » ? Qu'est-ce que le JSON et en quels types Python se traduit-il ?
+
+Une API (Application Programming Interface) est une interface qui permet à deux programmes de communiquer. Ici, l'API web de Frankfurter expose les taux de change de la BCE : on lui demande une donnée et elle répond.
+Envoyer une requête signifie qu'on adresse une demande à un serveur via une URL (une requête HTTP GET). Le serveur traite la demande et renvoie une réponse, ici au format JSON.
+Le JSON (JavaScript Object Notation) est un format texte standard d'échange de données, structuré en paires clé–valeur et en listes. Il se traduit naturellement en types Python :
+JSON	Python
+object {}	dict
+array []	list
+string	str
+number (entier)	int
+number (décimal)	float
+true / false	bool
+null	None
+
+2. Pourquoi enregistrer la réponse dans un fichier (cache/) plutôt que de rappeler l'API à chaque exécution ?
+
+Rapidité : lire un fichier local est bien plus rapide qu'un appel réseau.
+Économie et robustesse : on évite de solliciter le serveur inutilement (limites de débit possibles) et le programme continue de fonctionner même hors ligne ou si l'API est indisponible.
+Reproductibilité : on garde une trace exacte de la donnée telle qu'elle a été reçue, ce qui permet de rejouer les traitements sur les mêmes données.
