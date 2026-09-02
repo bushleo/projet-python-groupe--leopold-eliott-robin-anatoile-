@@ -1,1 +1,79 @@
+# A.3 - Les types de base
 
+entier = 10
+decimal = 3.14
+chaine = "Bonjour"
+booleen = True
+liste = [1, 2, 3]
+dictionnaire = {"nom": "Alice", "age": 20}
+
+print(type(entier))
+print(type(decimal))
+print(type(chaine))
+print(type(booleen))
+print(type(liste))
+print(type(dictionnaire))
+
+
+# A.4 - Les opérations
+
+# Arithmétique
+a = 10
+b = 3
+
+print("Addition :", a + b)
+print("Soustraction :", a - b)
+print("Multiplication :", a * b)
+print("Division :", a / b)
+print("Modulo :", a % b)
+print("Puissance :", a ** b)
+
+# Chaînes de caractères
+texte = "bonjour le monde"
+
+print("Concaténation :", texte + " !")
+print("Majuscules :", texte.upper())
+print("Minuscules :", texte.lower())
+print("Découpage :", texte.split())
+print("Remplacement :", texte.replace("monde", "Python"))
+
+# Listes
+nombres = [1, 2, 3]
+
+nombres.append(4)
+print("Liste après ajout :", nombres)
+print("Longueur :", len(nombres))
+print("Élément à l'indice 0 :", nombres[0])
+
+# Dictionnaires
+personne = {"nom": "Alice", "age": 20}
+
+print("Valeur de nom :", personne["nom"])
+personne["ville"] = "Paris"
+print("Dictionnaire après ajout :", personne)
+
+# Comparaisons
+print("a == b :", a == b)
+print("a != b :", a != b)
+print("a < b :", a < b)
+print("a > b :", a > b)
+print("a <= b :", a <= b)
+print("a >= b :", a >= b)
+
+# Opérateurs booléens
+x = True
+y = False
+
+print("x and y :", x and y)
+print("x or y :", x or y)
+print("not x :", not x)
+
+# A.5 - Les conditions
+
+taux = float(input("Entrez un taux : "))
+if taux > 1:
+    print("au-dessus de 1")
+elif taux == 1:
+    print("égal à 1")
+else:
+        print("en-dessous de 1")
