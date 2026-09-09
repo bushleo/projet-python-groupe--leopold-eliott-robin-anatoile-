@@ -113,3 +113,14 @@ La mémoïsation consiste à retenir les résultats déjà calculés pour ne pas
 `functools.lru_cache` fait ça automatiquement : il suffit d'écrire `@lru_cache(maxsize=None)` au-dessus de la fonction. Dans notre code, ça fait passer Fibonacci de 5 secondes à 0,000025 seconde pour n = 35. En contrepartie, ça occupe de la mémoire pour stocker les résultats.
 
 Python limite la profondeur de récursion (environ 1000 appels par défaut) parce que chaque appel occupe de la place en mémoire. Sans cette limite, une récursion sans fin ferait planter tout l'ordinateur. Quand on dépasse, on obtient une `RecursionError`.
+
+## Tableau des mesures — trois versions de Fibonacci
+
+| n | naïf (s) | mémoïsé (s) | itératif (s) |
+|---|---|---|---|
+| 10 | 0,000034 | 0,000007 | 0,000003 |
+| 20 | 0,0034 | 0,00001 | 0,000003 |
+| 25 | 0,039461 | 0,000017 | 0,000005 |
+| 30 | 0,445335 | 0,000023 | 0,000008 |
+| 32 | 1,147801 | 0,000183 | 0,000007 |
+| 35 | 5,000859 | 0,000025 | 0,000007 |
