@@ -1,0 +1,10 @@
+# Fichiers de log
+logs/
+*.log
+
+# Fichiers temporaires de Python
+__pycache__/
+*.pyc
+
+# Fichiers système Mac
+.DS_Store
