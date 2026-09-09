@@ -28,10 +28,13 @@ def fib_memo(n):
 
 def fib_iteratif(n):
     """Fibonacci avec une boucle."""
-    a, b = 0, 1
-    for _ in range(n):
-        a, b = b, a + b
-    return a
+    precedent = 0
+    actuel = 1
+    for i in range(n):
+        nouveau = precedent + actuel
+        precedent = actuel
+        actuel = nouveau
+    return precedent
 
 
 def chronometrer(fonction, n):

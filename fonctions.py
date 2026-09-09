@@ -26,7 +26,9 @@ def minimum_maximum(taux):
 
 
 donnees = lire_csv("donnees/taux.csv")
-valeurs = [taux for date, taux in donnees]
+valeurs = []
+for date, taux in donnees:
+    valeurs.append(taux)
 
 print("Nombre de jours :", len(valeurs))
 print("Moyenne (notre fonction) :", moyenne(valeurs))
